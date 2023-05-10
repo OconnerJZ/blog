@@ -28,20 +28,12 @@ Route::get('/', function (Request $request) {
 Route::post('register', [LoginController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 
-Route::middleware('auth:api')->controller(PostController::class)->group(function () {
-    Route::get('posts', 'index');
-    Route::get('posts/{id}', 'show');
-    Route::post('posts', 'store');
-});
+Route::get('posts', [PostController::class, 'index']);
+Route::get('comments', [CommentController::class, 'index']);
 
-Route::middleware('auth:api')->controller(UserController::class)->group(function () {
-    Route::get('users', 'index');
-    Route::get('users/{id}', 'show');
-    Route::post('users', 'store');
-});
-
-Route::middleware('auth:api')->controller(CommentController::class)->group(function () {
-    Route::get('comments', 'index');
-    Route::get('comments/{id}', 'show');
-    Route::post('comments', 'store');
+Route::middleware('auth:api')->group(function () {
+    Route::post('posts', [PostController::class, 'store']);
+    Route::post('comments', [CommentController::class, 'store']);
+    Route::get('users', [UserController::class, 'index']);
+    Route::post('users', [UserController::class, 'store']);
 });

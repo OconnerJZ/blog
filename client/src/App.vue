@@ -1,5 +1,5 @@
 <script setup>
-import ListPost from "./components/ListPost.vue";
+import ListPost from './components/ListPost.vue'
 </script>
 
 <template>

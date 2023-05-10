@@ -1,5 +1,15 @@
+// main.js
 import { createApp } from 'vue'
-import './style.css'
+import { createStore } from 'vuex'
 import App from './App.vue'
+import post from './vuex/post'
 
-createApp(App).mount('#app')
+const store = createStore({
+  modules: {
+    post
+  }
+})
+
+const app = createApp(App)
+app.use(store)
+app.mount('#app')
